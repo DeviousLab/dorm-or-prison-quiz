@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/theme-provider';
+import ConvexClientProvider from '@/components/ConvexClientProvider';
 
 export const fontSans = FontSans({
 	subsets: ['latin'],
@@ -30,18 +31,20 @@ export default function RootLayout({
 					fontSans.variable
 				)}
 			>
-				<ThemeProvider
-					attribute='class'
-					defaultTheme='system'
-					enableSystem
-					disableTransitionOnChange
-				>
-					<div className='flex min-h-screen flex-col'>
-						<Navbar />
-						{children}
-						<Footer />
-					</div>
-				</ThemeProvider>
+				<ConvexClientProvider>
+					<ThemeProvider
+						attribute='class'
+						defaultTheme='system'
+						enableSystem
+						disableTransitionOnChange
+					>
+						<div className='flex min-h-screen flex-col'>
+							<Navbar />
+							{children}
+							<Footer />
+						</div>
+					</ThemeProvider>
+				</ConvexClientProvider>
 			</body>
 		</html>
 	);
