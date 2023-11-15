@@ -1,18 +1,10 @@
-'use client';
-
 import { useState, useEffect, useMemo } from 'react';
-import {
-	Card,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
 import { Button, buttonVariants } from './ui/button';
 import { ChevronRight, Timer } from 'lucide-react';
 import OptionsCounter from './OptionsCounter';
+import QuestionDisplay from './QuestionDisplay';
 
-const MCQ = () => {
-
+const Options = () => {
 	return (
 		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
 			<div className='flex flex-row justify-between'>
@@ -32,17 +24,7 @@ const MCQ = () => {
 					wrong_answers={0}
 				/>
 			</div>
-			<Card className='w-full mt-4'>
-				<CardHeader className='flex flex-row items-center'>
-					<CardTitle className='mr-5 text-center divide-y divide-zinc-600/50'>
-						<div>1</div>
-						<div className='text-base text-slate-400'>10</div>
-					</CardTitle>
-					<CardDescription className='flex-grow text-lg'>
-						What is this
-					</CardDescription>
-				</CardHeader>
-			</Card>
+			<QuestionDisplay />
 			<div className='flex flex-row items-center justify-center w-full mt-4'>
 				<Button className='justify-start mx-4 py-8 mb-4'>
 					<div className='flex items-center justify-start'>
@@ -70,4 +52,4 @@ const MCQ = () => {
 	);
 };
 
-export default MCQ;
+export default Options;

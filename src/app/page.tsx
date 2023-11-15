@@ -1,6 +1,3 @@
-'use client';
-import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -13,10 +10,8 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 
-type CardProps = React.ComponentProps<typeof Card>;
-
 export default function Home() {
-	const rooms = useQuery(api.rooms.get);
+	
 	return (
 		<main className='flex grow items-center justify-center'>
 			<Card className='w-[380px]'>
