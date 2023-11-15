@@ -5,8 +5,9 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { ThemeProvider } from '@/components/theme-provider';
-import ConvexClientProvider from '@/components/ConvexClientProvider';
+import { ThemeProvider } from '@/components/providers/theme-provider';
+import ConvexClientProvider from '@/components/providers/ConvexClientProvider';
+import TanstackProvider from '@/components/providers/TanStackProvider';
 
 export const fontSans = FontSans({
 	subsets: ['latin'],
@@ -32,18 +33,20 @@ export default function RootLayout({
 				)}
 			>
 				<ConvexClientProvider>
-					<ThemeProvider
-						attribute='class'
-						defaultTheme='system'
-						enableSystem
-						disableTransitionOnChange
-					>
-						<div className='flex min-h-screen flex-col'>
-							<Navbar />
-							{children}
-							<Footer />
-						</div>
-					</ThemeProvider>
+					<TanstackProvider>
+						<ThemeProvider
+							attribute='class'
+							defaultTheme='system'
+							enableSystem
+							disableTransitionOnChange
+						>
+							<div className='flex min-h-screen flex-col'>
+								<Navbar />
+								{children}
+								<Footer />
+							</div>
+						</ThemeProvider>
+					</TanstackProvider>
 				</ConvexClientProvider>
 			</body>
 		</html>
