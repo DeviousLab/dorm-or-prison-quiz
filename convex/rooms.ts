@@ -22,7 +22,7 @@ export const get = query({
 	handler: async (ctx) => {
 		let rooms = await ctx.db.query('rooms').collect();
 		const shuffledRooms = shuffle(rooms).slice(0, 10);
-		return Promise.all(
+		return await Promise.all(
 			shuffledRooms.map(async (room) => ({
 				...room,
 				...(room.imageId

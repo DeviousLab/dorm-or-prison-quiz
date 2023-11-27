@@ -14,6 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as lib_relationship from "../lib/relationship";
 import type * as rooms from "../rooms";
 
 /**
@@ -25,6 +26,7 @@ import type * as rooms from "../rooms";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "lib/relationship": typeof lib_relationship;
   rooms: typeof rooms;
 }>;
 export declare const api: FilterApi<
