@@ -12,6 +12,7 @@ import { Button, buttonVariants } from './ui/button';
 import OptionsCounter from './OptionsCounter';
 import { formatTimeDelta } from '@/lib/utils';
 import { useTimerStore } from '@/store/zustand';
+import Skeleton from './Skeleton';
 
 const Options = () => {
 	const rooms = useQuery(api.rooms.get)
@@ -34,7 +35,6 @@ const Options = () => {
 			clearInterval(interval)
 		}
 	}, [hasEnded])
-	console.log(startTime, currentTime, hasEnded)
 
 	const isQuestionAnswered = userAnswers[currentQuestionIndex] ? true : false;
 
@@ -60,7 +60,7 @@ const Options = () => {
 
 		setCurrentQuestionIndex(nextQuestionIndex);
 	};
-	return rooms && (
+	return rooms ? (
 		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
 			<div className='flex flex-row justify-between'>
 				<div className='flex flex-col'>
@@ -95,13 +95,13 @@ const Options = () => {
 				</CardHeader>
 			</Card>
 			<div className='flex flex-row items-center justify-center w-full mt-4'>
-				<Button className='justify-start mx-4 py-8 mb-4'>
+				<Button className='justify-start mx-4 py-8 mb-4' onClick={() => handleOnAnswerClick("dorm", currentQuestionIndex)}>
 					<div className='flex items-center justify-start'>
 						<div className='p-2 px-3 mr-5 border rounded-md'>1</div>
 						<div className='text-start'>Dorm Room</div>
 					</div>
 				</Button>
-				<Button className='justify-start mx-4 py-8 mb-4'>
+				<Button className='justify-start mx-4 py-8 mb-4' onClick={() => handleOnAnswerClick("prison", currentQuestionIndex)}>
 					<div className='flex items-center justify-start'>
 						<div className='p-2 px-3 mr-5 border rounded-md'>2</div>
 						<div className='text-start'>Prison Cell</div>
@@ -124,6 +124,8 @@ const Options = () => {
 				</Button>
 			</div>
 		</div>
+	) : (
+		<Skeleton />
 	);
 };
 
