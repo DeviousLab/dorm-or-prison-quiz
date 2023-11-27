@@ -7,7 +7,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import ConvexClientProvider from '@/components/providers/ConvexClientProvider';
-import TanstackProvider from '@/components/providers/TanStackProvider';
 
 export const fontSans = FontSans({
 	subsets: ['latin'],
@@ -33,7 +32,6 @@ export default function RootLayout({
 				)}
 			>
 				<ConvexClientProvider>
-					<TanstackProvider>
 						<ThemeProvider
 							attribute='class'
 							defaultTheme='system'
@@ -46,7 +44,6 @@ export default function RootLayout({
 								<Footer />
 							</div>
 						</ThemeProvider>
-					</TanstackProvider>
 				</ConvexClientProvider>
 			</body>
 		</html>
