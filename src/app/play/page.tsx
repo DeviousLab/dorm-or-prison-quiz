@@ -1,12 +1,8 @@
-'use client';
-import { useQuery } from 'convex/react';
-import { api } from '../../../convex/_generated/api';
 import Options from '@/components/Options';
 import Image from 'next/image';
 
 export default function Play() {
-	const rooms = useQuery(api.rooms.get);
-	console.log();
+
 	return (
 		<main className='flex grow items-center justify-center'>
 			<Options />
@@ -16,6 +12,8 @@ export default function Play() {
 				</div>
 			)
 			)} */}
+			<p>
+			</p>
 		</main>
 	);
 }
