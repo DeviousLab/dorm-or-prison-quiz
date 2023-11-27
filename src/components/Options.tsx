@@ -15,26 +15,26 @@ import { useTimerStore } from '@/store/zustand';
 import Skeleton from './Skeleton';
 
 const Options = () => {
-	const rooms = useQuery(api.rooms.get)
+	const rooms = useQuery(api.rooms.get);
 	const totalQuestions = 10;
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 	const [correctAnswersScore, setCorrectAnswersScore] = useState<number>(0);
 	const [wrongAnswersScore, setWrongAnswersScore] = useState<number>(0);
 	const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
-	const [hasEnded, setHasEnded] = useState<boolean>(false)
-	const [currentTime, setCurrentTime] = useState<Date>(new Date())
-	const { time: startTime } = useTimerStore()
+	const [hasEnded, setHasEnded] = useState<boolean>(false);
+	const [currentTime, setCurrentTime] = useState<Date>(new Date());
+	const { time: startTime } = useTimerStore();
 
 	useEffect(() => {
-	const interval = setInterval(() => {
-		if (!hasEnded) {
-			setCurrentTime(new Date())
-		}
-	}, 1000)
+		const interval = setInterval(() => {
+			if (!hasEnded) {
+				setCurrentTime(new Date());
+			}
+		}, 1000);
 		return () => {
-			clearInterval(interval)
-		}
-	}, [hasEnded])
+			clearInterval(interval);
+		};
+	}, [hasEnded]);
 
 	const isQuestionAnswered = userAnswers[currentQuestionIndex] ? true : false;
 
@@ -74,7 +74,10 @@ const Options = () => {
 						{formatTimeDelta(differenceInSeconds(currentTime, startTime))}
 					</div>
 				</div>
-				<OptionsCounter correct_answers={correctAnswersScore} wrong_answers={wrongAnswersScore} />
+				<OptionsCounter
+					correct_answers={correctAnswersScore}
+					wrong_answers={wrongAnswersScore}
+				/>
 			</div>
 			<Card className='w-full mt-4'>
 				<CardHeader className='flex flex-row items-center'>
@@ -86,22 +89,32 @@ const Options = () => {
 						{rooms && (
 							<Image
 								src={rooms[currentQuestionIndex].url as string}
-								height={500}
+								height={200}
 								width={500}
 								alt='Image of room'
+								className='h-[26rem] w-auto'
+								priority
 							/>
 						)}
 					</CardContent>
 				</CardHeader>
 			</Card>
 			<div className='flex flex-row items-center justify-center w-full mt-4'>
-				<Button className='justify-start mx-4 py-8 mb-4' onClick={() => handleOnAnswerClick("dorm", currentQuestionIndex)}>
+				<Button
+					className='justify-start mx-4 py-8 mb-4'
+					onClick={() => handleOnAnswerClick('dorm', currentQuestionIndex)}
+					disabled={isQuestionAnswered}
+				>
 					<div className='flex items-center justify-start'>
 						<div className='p-2 px-3 mr-5 border rounded-md'>1</div>
 						<div className='text-start'>Dorm Room</div>
 					</div>
 				</Button>
-				<Button className='justify-start mx-4 py-8 mb-4' onClick={() => handleOnAnswerClick("prison", currentQuestionIndex)}>
+				<Button
+					className='justify-start mx-4 py-8 mb-4'
+					onClick={() => handleOnAnswerClick('prison', currentQuestionIndex)}
+					disabled={isQuestionAnswered}
+				>
 					<div className='flex items-center justify-start'>
 						<div className='p-2 px-3 mr-5 border rounded-md'>2</div>
 						<div className='text-start'>Prison Cell</div>
