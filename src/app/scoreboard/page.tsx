@@ -4,6 +4,9 @@ import { redirect, useSearchParams } from 'next/navigation';
 import ResultsCard from '@/components/ResultsCard';
 import AccuracyCard from '@/components/AccuracyCard';
 import TimeTakenCard from '@/components/TimeTakenCard';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { RotateCcw } from 'lucide-react';
 
 const Statistics = () => {
 	const searchParams = useSearchParams();
@@ -35,10 +38,17 @@ const Statistics = () => {
 					<h2 className='text-3xl font-bold tracking-tight'>Summary</h2>
 				</div>
 
-				<div className='grid gap-4 mt-4 md:grid-cols-7'>
+				<div className='grid gap-4 mt-4 md:grid-cols-8'>
 					<ResultsCard accuracy={accuracy} correct_answers={correct_answers} wrong_answers={wrong_answers} />
 					<AccuracyCard accuracy={accuracy} />
 					<TimeTakenCard timeTaken={Number(time_taken)} />
+          <Link href='/play' className='md:col-span-8'>
+						<Button
+							className='w-full transition duration-200 py-8 mb-4 text-lg'
+						>
+							Try again? <RotateCcw className='ml-2' size={20} />
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</>
