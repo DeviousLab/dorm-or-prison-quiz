@@ -1,14 +1,14 @@
 'use client';
 import { useQuery } from 'convex/react';
-import { useState, useEffect, useMemo, useContext } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ChevronRight, Timer } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { differenceInSeconds } from 'date-fns';
 
 import { api } from '../../convex/_generated/api';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button, buttonVariants } from './ui/button';
+import { Button } from './ui/button';
 import OptionsCounter from './OptionsCounter';
 import { formatTimeDelta } from '@/lib/utils';
 import { useTimerStore } from '@/store/zustand';
@@ -39,6 +39,8 @@ const Options = () => {
 	const isQuestionAnswered = userAnswers[currentQuestionIndex] ? true : false;
 
 	const router = useRouter();
+	const pathname = usePathname()
+  const searchParams = useSearchParams()!
 
 	const handleOnAnswerClick = (
 		answer: string,
@@ -60,6 +62,16 @@ const Options = () => {
 
 		setCurrentQuestionIndex(nextQuestionIndex);
 	};
+
+	const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams)
+      params.set(name, value)
+
+      return params.toString()
+    },
+    [searchParams]
+  )
 	return rooms ? (
 		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
 			<div className='flex flex-row justify-between'>
@@ -128,13 +140,21 @@ const Options = () => {
 					size='lg'
 					onClick={
 						currentQuestionIndex === totalQuestions - 1
-							? () => router.push('/')
+							? () => router.push('/scoreboard' + '?' + createQueryString('correct_answers', `${correctAnswersScore}`) + '&' + createQueryString('wrong_answers', `${wrongAnswersScore}`) + '&' + createQueryString('time_taken', `${differenceInSeconds(currentTime, startTime)}`))
 							: () => handleChangeQuestion(1)
 					}
 				>
 					{currentQuestionIndex === totalQuestions - 1 ? 'Finish' : 'Next'}
 					<ChevronRight className='w-4 h-4 ml-2' />
 				</Button>
+				<button
+        onClick={() => {
+          // <pathname>?sort=asc
+          
+        }}
+      >
+        ASC
+      </button>
 			</div>
 		</div>
 	) : (

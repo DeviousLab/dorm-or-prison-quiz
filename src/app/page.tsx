@@ -1,7 +1,6 @@
 'use client'
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
-import { useContext } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
