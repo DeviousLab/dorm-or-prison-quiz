@@ -8,7 +8,13 @@ import { differenceInSeconds } from 'date-fns';
 import { motion } from 'framer-motion';
 
 import { api } from '../../convex/_generated/api';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from './ui/card';
 import { Button } from './ui/button';
 import OptionsCounter from './OptionsCounter';
 import { formatTimeDelta } from '@/lib/utils';
@@ -24,6 +30,7 @@ const Options = () => {
 	const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
 	const [hasEnded, setHasEnded] = useState<boolean>(false);
 	const [currentTime, setCurrentTime] = useState<Date>(new Date());
+	const [isCorrect, setIsCorrect] = useState<boolean>(false);
 	const { time: startTime } = useTimerStore();
 
 	useEffect(() => {
@@ -47,8 +54,9 @@ const Options = () => {
 		currentQuestionIndex: number
 	) => {
 		if (isQuestionAnswered) return;
-		const isCorrect = rooms![currentQuestionIndex].type === answer;
-		if (isCorrect) {
+		const result = rooms![currentQuestionIndex].type === answer;
+		setIsCorrect(result);
+		if (result) {
 			setCorrectAnswersScore((prev) => prev + 1);
 		} else {
 			setWrongAnswersScore((prev) => prev + 1);
@@ -72,6 +80,7 @@ const Options = () => {
 		},
 		[searchParams]
 	);
+
 	return rooms ? (
 		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
 			<div className='flex flex-row justify-between'>
@@ -93,7 +102,7 @@ const Options = () => {
 			</div>
 			<Card className='w-full mt-4'>
 				<CardHeader className='flex flex-row items-center'>
-					<CardTitle className='mr-5 text-center divide-y divide-zinc-600/50'>
+					<CardTitle className='mr-5 text-center text-lg divide-y divide-zinc-600/50'>
 						<div>{currentQuestionIndex + 1}</div>
 						<div className='text-base text-slate-400'>{totalQuestions}</div>
 					</CardTitle>
@@ -110,10 +119,27 @@ const Options = () => {
 									height={200}
 									width={500}
 									alt='Image of room'
-									className='h-[26rem] w-auto'
+									className={`h-[26rem] w-auto ${
+										isQuestionAnswered
+											? isCorrect
+												? 'border-8 border-green-500 rounded-t-md transition duration-150 ease-in'
+												: 'border-8 border-red-500 rounded-t-md transition duration-150 ease-in'
+											: 'border-none rounded-t-md'
+									}`}
 									priority
 								/>
 							)}
+							<CardDescription
+								className={`text-center pt-1 pb-2 z-10 ${
+									isQuestionAnswered
+										? isCorrect
+											? 'visible bg-green-500 rounded-b-md text-black transition duration-150 ease-in'
+											: 'visible bg-red-500 rounded-b-md text-black transition duration-150 ease-in'
+										: 'invisible bg-none rounded-b-md text-black'
+								}`}
+							>
+								{rooms[currentQuestionIndex].title}
+							</CardDescription>
 						</motion.div>
 					</CardContent>
 				</CardHeader>
