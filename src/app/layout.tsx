@@ -14,8 +14,9 @@ export const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-	title: 'Dorm or Prison Quiz',
-	description: 'Guess if the room is either a prison room or a dorm room.',
+	metadataBase: new URL('http://localhost:3000'),
+	title: 'Dormiq | Dorm or Prison Quiz',
+	description: "Can you figure out if it's a prison cell or a dorm room?",
 };
 
 export default function RootLayout({
