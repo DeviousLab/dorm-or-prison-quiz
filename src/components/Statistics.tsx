@@ -7,6 +7,7 @@ import TimeTakenCard from '@/components/TimeTakenCard';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { RotateCcw } from 'lucide-react';
+import SocialShare from './SocialShare';
 
 const Statistics = () => {
 	const searchParams = useSearchParams();
@@ -36,6 +37,7 @@ const Statistics = () => {
 			<div className='p-8 mx-auto max-w-7xl'>
 				<div className='flex items-center justify-between space-y-2'>
 					<h2 className='text-3xl font-bold tracking-tight'>Summary</h2>
+					<SocialShare />
 				</div>
 
 				<div className='grid gap-4 mt-4 md:grid-cols-8'>

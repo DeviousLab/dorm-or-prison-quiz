@@ -7,7 +7,6 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
 
     const hasScore = searchParams.has('accuracy');
-    console.log(hasScore)
     const accuracy = hasScore
       ? searchParams.get('accuracy')
       : '0';
