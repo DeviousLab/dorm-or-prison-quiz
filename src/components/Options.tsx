@@ -201,6 +201,7 @@ const Options = () => {
 							  }
 							: () => handleChangeQuestion(1)
 					}
+					disabled={!isQuestionAnswered}
 				>
 					{currentQuestionIndex === totalQuestions - 1 ? 'Finish' : 'Next'}
 					<ChevronRight className='w-4 h-4 ml-2' />
