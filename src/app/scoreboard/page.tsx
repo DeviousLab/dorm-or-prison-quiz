@@ -1,4 +1,3 @@
-import SocialShare from '@/components/SocialShare';
 import Statistics from '@/components/Statistics';
 
 type Props = {

@@ -1,6 +1,6 @@
 'use client';
 import { useQuery } from 'convex/react';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronRight, Timer } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -22,7 +22,8 @@ import { useTimerStore } from '@/store/zustand';
 import Skeleton from './Skeleton';
 
 const Options = () => {
-	const rooms = useQuery(api.rooms.get);
+	const seedNumber = useRef(Math.floor(Math.random() * 100))
+	const rooms = useQuery(api.rooms.get, { seedNumber: seedNumber.current });
 	const totalQuestions = 10;
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 	const [correctAnswersScore, setCorrectAnswersScore] = useState<number>(0);
@@ -31,7 +32,11 @@ const Options = () => {
 	const [hasEnded, setHasEnded] = useState<boolean>(false);
 	const [currentTime, setCurrentTime] = useState<Date>(new Date());
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
-	const { time: startTime } = useTimerStore();
+	const { time: startTime, setTime } = useTimerStore();
+
+	useEffect(() => {
+		setTime(new Date());
+	}, [setTime]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
