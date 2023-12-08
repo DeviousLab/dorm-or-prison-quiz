@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og';
-
+import logo from '../../../public/logo.png'
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
@@ -36,9 +36,9 @@ export async function GET(request: Request) {
             }}
           >
             <img
-              alt="Vercel"
+              alt="DormIQ Logo"
               height={200}
-              src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
+              src="../../../public/logo.png"
               style={{ margin: '0 30px' }}
               width={232}
             />
