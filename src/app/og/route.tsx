@@ -41,6 +41,7 @@ export async function GET(request: Request) {
             <img
               alt="DormIQ Logo"
               height={200}
+              //@ts-ignore
               src={image}
               style={{ margin: '0 30px' }}
               width={200}
