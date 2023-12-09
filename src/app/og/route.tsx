@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
-
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
+  const image = await fetch(new URL('../Designer.png', import.meta.url)).then(
+    (res) => res.arrayBuffer(),
+  );
   try {
     const { searchParams } = new URL(request.url);
 
@@ -15,7 +18,7 @@ export async function GET(request: Request) {
       (
         <div
           style={{
-            backgroundColor: 'black',
+            backgroundColor: '#e0f2fe',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
@@ -36,11 +39,11 @@ export async function GET(request: Request) {
             }}
           >
             <img
-              alt="Vercel"
+              alt="DormIQ Logo"
               height={200}
-              src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
+              src={image}
               style={{ margin: '0 30px' }}
-              width={232}
+              width={200}
             />
           </div>
           <div
@@ -48,7 +51,7 @@ export async function GET(request: Request) {
               fontSize: 55,
               fontStyle: 'normal',
               letterSpacing: '-0.025em',
-              color: 'white',
+              color: '#1f2937',
               marginTop: 30,
               padding: '0 120px',
               lineHeight: 1.4,
@@ -57,7 +60,7 @@ export async function GET(request: Request) {
             }}
           >
             I got an accuracy of {accuracy}% in Dormiq!
-            Can you do any better?
+            Can you do any better? 🕵️
           </div>
         </div>
       ),
