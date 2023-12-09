@@ -7,7 +7,7 @@ type Props = {
 export async function generateMetadata({ searchParams }: Props) {
 	const correct_answers = parseInt(searchParams.correct_answers as string);
 	const accuracy = (correct_answers / 10) * 100;
-	const ogUrl = new URL('http://localhost:3000/og');
+	const ogUrl = new URL('https://dormiq.vercel.app/og');
 	ogUrl.searchParams.set('accuracy', accuracy.toString());
 
 	return {
