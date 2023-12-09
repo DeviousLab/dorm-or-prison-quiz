@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og';
-import logo from '../../../public/logo.png'
 export const runtime = 'edge';
 
 export async function GET(request: Request) {
+  const image = await fetch(new URL('../Designer.png', import.meta.url)).then(
+    (res) => res.arrayBuffer(),
+  );
   try {
     const { searchParams } = new URL(request.url);
 
@@ -15,7 +18,7 @@ export async function GET(request: Request) {
       (
         <div
           style={{
-            backgroundColor: 'black',
+            backgroundColor: '#e0f2fe',
             backgroundSize: '150px 150px',
             height: '100%',
             width: '100%',
@@ -38,9 +41,9 @@ export async function GET(request: Request) {
             <img
               alt="DormIQ Logo"
               height={200}
-              src="../../../public/logo.png"
+              src={image}
               style={{ margin: '0 30px' }}
-              width={232}
+              width={200}
             />
           </div>
           <div
@@ -48,7 +51,7 @@ export async function GET(request: Request) {
               fontSize: 55,
               fontStyle: 'normal',
               letterSpacing: '-0.025em',
-              color: 'white',
+              color: '#1f2937',
               marginTop: 30,
               padding: '0 120px',
               lineHeight: 1.4,
@@ -57,7 +60,7 @@ export async function GET(request: Request) {
             }}
           >
             I got an accuracy of {accuracy}% in Dormiq!
-            Can you do any better?
+            Can you do any better? 🕵️
           </div>
         </div>
       ),
