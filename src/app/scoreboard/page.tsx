@@ -12,6 +12,7 @@ export async function generateMetadata({ searchParams }: Props) {
 
 	return {
 		description: "Can you figure out if it's a prison cell or a dorm room?",
+		url: 'https://dormiq.vercel.app',
 		openGraph: {
 			url: 'https://dormiq.vercel.app',
 			images: [
@@ -38,6 +39,7 @@ export async function generateMetadata({ searchParams }: Props) {
 		},
 	};
 }
+
 const StatisticsPage = () => {
 	return (
 		<>
