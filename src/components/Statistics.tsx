@@ -1,12 +1,12 @@
 'use client';
 import { redirect, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { RotateCcw } from 'lucide-react';
 
 import ResultsCard from '@/components/ResultsCard';
 import AccuracyCard from '@/components/AccuracyCard';
 import TimeTakenCard from '@/components/TimeTakenCard';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { RotateCcw } from 'lucide-react';
 import SocialShare from './SocialShare';
 
 const Statistics = () => {

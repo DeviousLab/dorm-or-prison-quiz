@@ -9,7 +9,7 @@ import {
 
 const SocialShare = () => {
 	const shareUrl = 'https://dormiq.vercel.app';
-  const title = 'Dormiq | Dorm or Prison Quiz';
+  const title = 'DormIQ | Dorm or Prison Quiz';
   const hashtag = '#dormiq';
 	return (
 		<div className='grid grid-cols-3 gap-x-2'>
