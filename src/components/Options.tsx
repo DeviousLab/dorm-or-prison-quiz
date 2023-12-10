@@ -18,7 +18,7 @@ import {
 import { Button } from './ui/button';
 import OptionsCounter from './OptionsCounter';
 import { formatTimeDelta } from '@/lib/utils';
-import { useTimerStore } from '@/store/zustand';
+import { useTimerStore, useGameEndStore } from '@/store/zustand';
 import Skeleton from './Skeleton';
 
 const Options = () => {
@@ -29,10 +29,10 @@ const Options = () => {
 	const [correctAnswersScore, setCorrectAnswersScore] = useState<number>(0);
 	const [wrongAnswersScore, setWrongAnswersScore] = useState<number>(0);
 	const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
-	const [hasEnded, setHasEnded] = useState<boolean>(false);
 	const [currentTime, setCurrentTime] = useState<Date>(new Date());
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
 	const { time: startTime, setTime } = useTimerStore();
+	const { gameEnd: hasEnded, setGameEnd: setHasEnded } = useGameEndStore();
 
 	useEffect(() => {
 		setTime(new Date());
