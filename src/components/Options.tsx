@@ -22,7 +22,7 @@ import { useTimerStore } from '@/store/zustand';
 import Skeleton from './Skeleton';
 
 const Options = () => {
-	const seedNumber = useRef(Math.floor(Math.random() * 100))
+	const seedNumber = useRef(Math.floor(Math.random() * 100));
 	const rooms = useQuery(api.rooms.get, { seedNumber: seedNumber.current });
 	const totalQuestions = 10;
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
@@ -85,6 +85,42 @@ const Options = () => {
 		},
 		[searchParams]
 	);
+
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			const key = e.key;
+
+			if (key === '1') {
+				handleOnAnswerClick('dorm', currentQuestionIndex);
+			} else if (key === '2') {
+				handleOnAnswerClick('prison', currentQuestionIndex);
+			} else if (key === 'Enter' && isQuestionAnswered) {
+				if (currentQuestionIndex === totalQuestions - 1) {
+					setHasEnded(true);
+					router.push(
+						'/scoreboard' +
+							'?' +
+							createQueryString('correct_answers', `${correctAnswersScore}`) +
+							'&' +
+							createQueryString('wrong_answers', `${wrongAnswersScore}`) +
+							'&' +
+							createQueryString(
+								'time_taken',
+								`${differenceInSeconds(currentTime, startTime)}`
+							)
+					);
+				}
+				handleChangeQuestion(1);
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyDown);
+		};
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [handleChangeQuestion, handleOnAnswerClick, currentQuestionIndex]);
 
 	return rooms ? (
 		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
