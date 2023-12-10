@@ -1,3 +1,4 @@
+'use client';
 import {
 	FacebookShareButton,
 	TwitterShareButton,
@@ -7,10 +8,14 @@ import {
 	WhatsappIcon,
 } from 'react-share';
 
-const SocialShare = () => {
-	const shareUrl = 'https://dormiq.vercel.app';
+type Props = {
+	correct_answers: number;
+};
+
+const SocialShare = (correct_answers: Props) => {
+	const shareUrl = `https://dormiq.vercel.app?correct_answers=${correct_answers.correct_answers}`;
   const title = 'DormIQ | Dorm or Prison Quiz';
-  const hashtag = '#dormiq';
+  const hashtag = 'dormiq';
 	return (
 		<div className='grid grid-cols-3 gap-x-2'>
 			<FacebookShareButton url={shareUrl} hashtag={hashtag}>

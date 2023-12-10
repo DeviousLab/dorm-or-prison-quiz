@@ -8,13 +8,16 @@ import AccuracyCard from '@/components/AccuracyCard';
 import TimeTakenCard from '@/components/TimeTakenCard';
 import { Button } from '@/components/ui/button';
 import SocialShare from './SocialShare';
+import { useGameEndStore,  } from '@/store/zustand';
 
 const Statistics = () => {
 	const searchParams = useSearchParams();
+	const { gameEnd } = useGameEndStore();
 	if (
-		!searchParams.has('correct_answers') ||
-		!searchParams.has('wrong_answers') ||
-		!searchParams.has('time_taken')
+		!searchParams.has('correct_answers') &&
+		!searchParams.has('wrong_answers') &&
+		!searchParams.has('time_taken') &&
+		!gameEnd
 	) {
 		return redirect('/');
 	}
@@ -37,7 +40,7 @@ const Statistics = () => {
 			<div className='p-8 mx-auto max-w-7xl'>
 				<div className='flex items-center justify-between space-y-2'>
 					<h2 className='text-3xl font-bold tracking-tight'>Summary</h2>
-					<SocialShare />
+					<SocialShare correct_answers={correct_answers} />
 				</div>
 
 				<div className='grid gap-4 mt-4 md:grid-cols-8'>
