@@ -60,7 +60,7 @@ export async function GET(request: Request) {
               display: 'flex',
             }}
           >
-            I got an accuracy of {accuracy}% in Dormiq!
+            I got an accuracy of {accuracy}% in DormIQ!
             Can you do any better? 🕵️
           </div>
         </div>

@@ -13,12 +13,26 @@ export async function generateMetadata({ searchParams }: Props) {
 	return {
 		description: "Can you figure out if it's a prison cell or a dorm room?",
 		openGraph: {
+			url: 'https://dormiq.vercel.app',
 			images: [
 				{
 					url: ogUrl.toString(),
 					width: 1200,
 					height: 630,
-					alt: 'Dormiq | Statistics',
+					alt: 'DormIQ | Statistics',
+				},
+			],
+		},
+		twitter: {
+			title: 'DormIQ | Dorm or Prison Quiz',
+			description: "Can you figure out if it's a prison cell or a dorm room?",
+			cardType: 'summary_large_image',
+			images: [
+				{
+					url: ogUrl.toString(),
+					width: 1200,
+					height: 630,
+					alt: 'DormIQ | Statistics',
 				},
 			],
 		},

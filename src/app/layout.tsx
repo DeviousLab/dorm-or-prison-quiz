@@ -15,7 +15,7 @@ export const fontSans = FontSans({
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://dormiq.vercel.app/'),
-	title: 'Dormiq | Dorm or Prison Quiz',
+	title: 'DormIQ | Dorm or Prison Quiz',
 	description: "Can you figure out if it's a prison cell or a dorm room?",
 };
 
