@@ -4,9 +4,7 @@ import Image from 'next/image';
 import { ModeToggle } from '@/components/ThemeToggle';
 import Logo from '@/app/Designer.png'
 
-type Props = {};
-
-const Navbar = async (props: Props) => {
+const Navbar = async () => {
 	return (
 		<header className='bg-white dark:bg-gray-950 text-black dark:text-white h-fit border-b border-zinc-300 py-2 '>
 			<div className='flex items-center justify-between h-full gap-2 px-8 mx-auto'>

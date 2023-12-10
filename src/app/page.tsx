@@ -20,7 +20,7 @@ export default function Home() {
 				<CardHeader>
 					<CardTitle>Welcome to Dormiq!</CardTitle>
 					<CardDescription>
-						Can you figure out which image is a UK dorm room or a prison cell?
+					Ready for a challenge? See if you can spot the difference between a dorm room and a prison cell! 🕵️‍♂️
 					</CardDescription>
 				</CardHeader>
 				<CardFooter>
