@@ -19,13 +19,13 @@ const SocialShare = (correct_answers: Props) => {
 	return (
 		<div className='grid grid-cols-3 gap-x-2'>
 			<FacebookShareButton url={shareUrl} hashtag={hashtag}>
-				<FacebookIcon size={32} round />
+				<FacebookIcon size={35} round />
 			</FacebookShareButton>
 			<TwitterShareButton url={shareUrl} title={title} hashtags={[hashtag]}>
-				<TwitterIcon size={32} round />
+				<TwitterIcon size={35} round />
 			</TwitterShareButton>
 			<WhatsappShareButton url={shareUrl} title={title}>
-				<WhatsappIcon size={32} round />
+				<WhatsappIcon size={35} round />
 			</WhatsappShareButton>
 		</div>
 	);

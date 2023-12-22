@@ -55,7 +55,7 @@ export default function Home() {
 		<main className='flex grow items-center justify-center'>
 			<Card className='w-[380px]'>
 				<CardHeader>
-					<CardTitle>Welcome to Dormiq!</CardTitle>
+					<CardTitle>Welcome to DormIQ!</CardTitle>
 					<CardDescription>
 					Ready for a challenge? See if you can spot the difference between a dorm room and a prison cell! 🕵️‍♂️
 					</CardDescription>

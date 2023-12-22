@@ -9,14 +9,14 @@ const Footer = () => {
 				<div className='flex -mx-2'>
 					<Link
 						href='https://github.com/DeviousLab/dorm-or-prison-quiz'
-						className='mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+						className='mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-[#3FB6C4]'
 						aria-label='Github'
 					>
 						<Github />
 					</Link>
 					<Link
 						href='https://twitter.com/DeviousLab'
-						className='mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400'
+						className='mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-[#3FB6C4]'
 						aria-label='Twitter'
 					>
 						<Twitter />
