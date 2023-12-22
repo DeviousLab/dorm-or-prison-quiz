@@ -8,18 +8,20 @@ import AccuracyCard from '@/components/AccuracyCard';
 import TimeTakenCard from '@/components/TimeTakenCard';
 import { Button } from '@/components/ui/button';
 import SocialShare from './SocialShare';
-import { useGameEndStore, useTimerStore } from '@/store/zustand';
+import { useGameEndStore } from '@/store/zustand';
 
 const Statistics = () => {
 	const searchParams = useSearchParams();
 	const { gameEnd, setGameEnd } = useGameEndStore();
-	const { setTime } = useTimerStore();
 	if (
-		!searchParams.has('correct_answers') &&
-		!searchParams.has('wrong_answers') &&
-		!searchParams.has('time_taken') &&
-		!gameEnd
+		!gameEnd &&
+		searchParams.has('correct_answers') ||
+		searchParams.has('wrong_answers') ||
+		searchParams.has('time_taken')
 	) {
+		return redirect(`/?correct_answers=${parseInt(searchParams.get('correct_answers') as string)}`);
+	}
+	if (!gameEnd) {
 		return redirect('/');
 	}
 	const correct_answers_str = searchParams.get('correct_answers');
@@ -30,6 +32,7 @@ const Statistics = () => {
 	const correct_answers = parseInt(correct_answers_str);
 	const wrong_answers = parseInt(wrong_answers_str);
 	const time_taken = searchParams.get('time_taken');
+
 
 	let accuracy: number = 0;
 
@@ -42,7 +45,9 @@ const Statistics = () => {
 				<div className='flex items-center justify-between space-y-2'>
 					<h2 className='text-3xl font-bold tracking-tight'>Summary</h2>
 					<div className=''>
-						<h3 className='font-bold tracking-tight mb-2'>Share your score! 👇</h3>
+						<h3 className='font-bold tracking-tight mb-2'>
+							Share your score! 👇
+						</h3>
 						<SocialShare correct_answers={correct_answers} />
 					</div>
 				</div>
