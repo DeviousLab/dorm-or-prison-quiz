@@ -8,11 +8,12 @@ import AccuracyCard from '@/components/AccuracyCard';
 import TimeTakenCard from '@/components/TimeTakenCard';
 import { Button } from '@/components/ui/button';
 import SocialShare from './SocialShare';
-import { useGameEndStore,  } from '@/store/zustand';
+import { useGameEndStore,useTimerStore  } from '@/store/zustand';
 
 const Statistics = () => {
 	const searchParams = useSearchParams();
-	const { gameEnd } = useGameEndStore();
+	const { gameEnd, setGameEnd } = useGameEndStore();
+	const { setTime } = useTimerStore();
 	if (
 		!searchParams.has('correct_answers') &&
 		!searchParams.has('wrong_answers') &&
@@ -50,6 +51,7 @@ const Statistics = () => {
           <Link href='/play' className='md:col-span-8'>
 						<Button
 							className='w-full transition duration-200 py-8 mb-4 text-lg'
+							onClick={() => setGameEnd(false)}
 						>
 							Try again? <RotateCcw className='ml-2' size={20} />
 						</Button>

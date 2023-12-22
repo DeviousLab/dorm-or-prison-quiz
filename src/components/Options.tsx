@@ -31,12 +31,8 @@ const Options = () => {
 	const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
 	const [currentTime, setCurrentTime] = useState<Date>(new Date());
 	const [isCorrect, setIsCorrect] = useState<boolean>(false);
-	const { time: startTime, setTime } = useTimerStore();
+	const { time: startTime } = useTimerStore();
 	const { gameEnd: hasEnded, setGameEnd: setHasEnded } = useGameEndStore();
-
-	useEffect(() => {
-		setTime(new Date());
-	}, [setTime]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
