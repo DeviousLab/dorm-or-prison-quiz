@@ -13,7 +13,7 @@ type Props = {
 };
 
 const SocialShare = (correct_answers: Props) => {
-	const shareUrl = `https://dormiq.vercel.app?correct_answers=${correct_answers.correct_answers}`;
+	const shareUrl = `https://dormiq.xyz?correct_answers=${correct_answers.correct_answers}`;
   const title = 'DormIQ | Dorm or Prison Quiz';
   const hashtag = 'dormiq';
 	return (

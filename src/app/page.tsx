@@ -22,9 +22,9 @@ export async function generateMetadata({ searchParams }: Props) {
 
 	return {
 		description: "Can you figure out if it's a prison cell or a dorm room?",
-		url: 'https://dormiq.vercel.app',
+		url: 'https://dormiq.xyz',
 		openGraph: {
-			url: 'https://dormiq.vercel.app',
+			url: 'https://dormiq.xyz',
 			images: [
 				{
 					url: ogUrl.toString(),
