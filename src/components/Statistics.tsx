@@ -15,8 +15,8 @@ const Statistics = () => {
 	const { gameEnd, setGameEnd } = useGameEndStore();
 	if (
 		!gameEnd &&
-		searchParams.has('correct_answers') ||
-		searchParams.has('wrong_answers') ||
+		searchParams.has('correct_answers') &&
+		searchParams.has('wrong_answers') &&
 		searchParams.has('time_taken')
 	) {
 		return redirect(`/?correct_answers=${parseInt(searchParams.get('correct_answers') as string)}`);
@@ -63,7 +63,7 @@ const Statistics = () => {
 					<Link href='/play' className='md:col-span-8'>
 						<Button
 							className='w-full transition duration-200 py-8 mb-4 text-lg'
-							onClick={() => setGameEnd(false)}
+							
 						>
 							Try again? <RotateCcw className='ml-2' size={20} />
 						</Button>
