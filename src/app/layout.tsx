@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import ConvexClientProvider from '@/components/providers/ConvexClientProvider';
+import Script from 'next/script';
 
 export const fontSans = FontSans({
 	subsets: ['latin'],
@@ -26,6 +27,12 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
+			<Script
+				async
+				src='https://eu.umami.is/script.js'
+				data-website-id='753d203b-1155-44e7-8d83-ba9233835060'
+				strategy='beforeInteractive'
+			/>
 			<body
 				className={cn(
 					'min-h-screen bg-background font-sans antialiased',
@@ -33,18 +40,18 @@ export default function RootLayout({
 				)}
 			>
 				<ConvexClientProvider>
-						<ThemeProvider
-							attribute='class'
-							defaultTheme='system'
-							enableSystem
-							disableTransitionOnChange
-						>
-							<div className='flex min-h-screen flex-col'>
-								<Navbar />
-								{children}
-								<Footer />
-							</div>
-						</ThemeProvider>
+					<ThemeProvider
+						attribute='class'
+						defaultTheme='system'
+						enableSystem
+						disableTransitionOnChange
+					>
+						<div className='flex min-h-screen flex-col'>
+							<Navbar />
+							{children}
+							<Footer />
+						</div>
+					</ThemeProvider>
 				</ConvexClientProvider>
 			</body>
 		</html>
