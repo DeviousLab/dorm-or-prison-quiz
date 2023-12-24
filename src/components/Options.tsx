@@ -119,7 +119,7 @@ const Options = () => {
 	}, [handleChangeQuestion, handleOnAnswerClick, currentQuestionIndex]);
 
 	return rooms ? (
-		<div className='md:w-[80vw] max-w-4xl w-[90vw]'>
+		<div className='md:w-[80vw] max-w-4xl w-[90vw] my-6'>
 			<div className='flex flex-row justify-between'>
 				<div className='flex flex-col'>
 					<p>
@@ -138,12 +138,12 @@ const Options = () => {
 				/>
 			</div>
 			<Card className='w-full mt-4'>
-				<CardHeader className='flex flex-row items-center'>
-					<CardTitle className='mr-5 text-center text-lg divide-y divide-zinc-600/50'>
+				<CardHeader className='flex flex-row items-center p-4 md:p-6'>
+					<CardTitle className='md:mr-5 text-center text-lg divide-y divide-zinc-600/50'>
 						<div>{currentQuestionIndex + 1}</div>
 						<div className='text-base text-slate-400'>{totalQuestions}</div>
 					</CardTitle>
-					<CardContent className='grow flex justify-center'>
+					<CardContent className='grow flex justify-center p-2 pl-3'>
 						<motion.div
 							initial={{ opacity: 0, x: 100 }}
 							animate={{ opacity: 1, x: 0 }}
@@ -156,7 +156,7 @@ const Options = () => {
 									height={200}
 									width={500}
 									alt='Image of room'
-									className={`h-[26rem] w-auto ${
+									className={`md:h-[26rem] md:w-auto ${
 										isQuestionAnswered
 											? isCorrect
 												? 'border-8 border-green-500 rounded-t-md transition duration-150 ease-in'
